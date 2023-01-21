@@ -1,6 +1,7 @@
 public class Classroom
 {
     private Student[] classRoster;
+    private String[] spaces;
 
     public Classroom(int numStudents)
     {
@@ -22,10 +23,10 @@ public class Classroom
     public boolean addStudent(Student student)
     {
         for(int x = 0; x < classRoster.length;x++){
-            if(classRoster[x].toString().length() == 0){
-                classRoster[x] = student;
-                return true;
-            }
+           if(classRoster[x] == null){
+               classRoster[x] = student;
+               return true;
+           }
         }
         return false;
     }
@@ -39,11 +40,15 @@ public class Classroom
         int y = 0;
         int a = 0;
         for(Student x : classRoster) {
-            for (int z = 0; z < x.getExamScores().length; z++)
-                y = y + (x.getExamScores())[z];
-            a++;
+            if (x != null) {
+                for (int z = 0; z < x.getExamScores().length; z++)
+                    y = y + (x.getExamScores())[z];
+                    a = a + x.getExamScores().length;
+            }
+
         }
         return y/a;
+
         }
 
 
@@ -54,6 +59,14 @@ public class Classroom
      */
     public void printRoster()
     {
-        for(int x = 0; x<)
+        for(int x = 0; x<classRoster.length;x++){
+            if(classRoster[x]!= null){
+            Student temp = classRoster[x];
+            System.out.println(temp.getLast() +", " + temp.getFirst());
+        }
     }
+
+}
+
+
 }
